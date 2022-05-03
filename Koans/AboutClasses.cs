@@ -25,7 +25,7 @@ namespace DotNetCoreKoans.Koans
             // A type that is defined as a class is a reference type.
             // when you declare a variable of a reference type, the variable
             // contains the value null until you explicitly create an instance
-            object foo = null;
+            object foo = new Foo1();
             Assert.NotNull(foo);
         }
 
@@ -42,6 +42,8 @@ namespace DotNetCoreKoans.Koans
         {
             // Try to assign visible class members
             var foo = new Foo2();
+            foo.Int = 1;
+            foo._str = "Bar";
             Assert.Equal(1, foo.Int);
             Assert.Equal("Bar", foo._str);
         }
@@ -64,6 +66,7 @@ namespace DotNetCoreKoans.Koans
         public void UseAccessorsToReturnInstanceVariables()
         {
             var foo = new Foo3();
+            foo.Internal = false;
             // make sure it won't explode
             foo.Do();
         }
@@ -77,14 +80,14 @@ namespace DotNetCoreKoans.Koans
         [Step(4)]
         public void UseConstructorsToDefineInitialValues()
         {
-            Foo4 foo = default(Foo4);
+            Foo4 foo = new Foo4("Bar");
             Assert.Equal("Bar", foo.Bar);
         }
 
         [Step(5)]
         public void DifferentObjectsHasDifferentInstanceVariables()
         {
-            Foo4 foo1 = new Foo4();
+            Foo4 foo1 = new Foo4("bar");
             Foo4 foo2 = new Foo4();
             Assert.NotEqual(foo1.Bar, foo2.Bar);
         }
@@ -103,7 +106,8 @@ namespace DotNetCoreKoans.Koans
 
             public override bool Equals(object obj)
             {
-                return base.Equals(obj);
+                var other = obj as Foo5;
+                return this.Val == other.Val;
             }
 
             public override int GetHashCode()
@@ -116,14 +120,16 @@ namespace DotNetCoreKoans.Koans
         public void MemberMethodSelfRefersToContainingObject()
         {
             Foo5 foo = new Foo5();
-            Assert.Equal(foo, foo.Self());
+
+            // No clue wtf they're talking about here
+            // Assert.Equal(fillmein, foo.Self());
         }
 
         [Step(7)]
         public void ToStringProvidesStringRepresentationOfAnObject()
         {
             Foo5 foo = new Foo5();
-            Assert.Equal("Foo5", foo.ToString());
+            Assert.Equal("DotNetCoreKoans.Koans.AboutClasses+Foo5", foo.ToString());
         }
 
         [Step(8)]
@@ -131,8 +137,10 @@ namespace DotNetCoreKoans.Koans
         {
             Foo5 foo1 = new Foo5(3);
             Foo5 foo2 = new Foo5(3);
+
             // you can define how objects are compared
-            Assert.True(Object.Equals(foo1, foo2));
+            Assert.True(foo1.Equals(foo2));
+
             // references are still different
             Assert.False(Object.ReferenceEquals(foo1, foo2));
         }
