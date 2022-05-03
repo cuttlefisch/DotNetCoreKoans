@@ -24,10 +24,11 @@ namespace DotNetCoreKoans.Koans
             };
 
             int sum = 0;
-            // A for loop has three parts: something to run before the loop starts for the first time,
-            // a condition that will decide whether to keep iterating, and something to do after each iteration
+            // A for loop has three parts: something to run before the loop
+            // starts for the first time, a condition that will decide whether
+            // to keep iterating, and something to do after each iteration
 
-            for (var i = 0; FILL_ME_IN; i++)
+            for (var i = 0; i < 3; i++)
             {
                 sum += numbers[i];
             }
@@ -49,7 +50,7 @@ namespace DotNetCoreKoans.Koans
                 lastAnimal = animals[i];
                 if (animals[i] == "Dogs")
                 {
-                    //FILL_ME_IN
+                    break;
                 }
             }
 
@@ -69,7 +70,7 @@ namespace DotNetCoreKoans.Koans
             {
                 if (colors[i] == "Blue")
                 {
-                    //FILL_ME_IN
+                    continue;
                 }
                 new_colors.Add(colors[i]);
             }
@@ -81,7 +82,8 @@ namespace DotNetCoreKoans.Koans
         [Step(4)]
         public void WhileLoop()
         {
-            // This loop is sort of like the for loop, but only requires the middle part
+            // This loop is sort of like the for loop, but only requires the
+            // middle part
             var numbers = new List<int>()
             {
                 42,
@@ -91,12 +93,13 @@ namespace DotNetCoreKoans.Koans
 
             int sum = 0;
 
-            // A while loop will keep repeating until the condition at the start is false
-            // So we need to initialize any variables the loop needs before it, and to change those variables inside the loop itself
+            // A while loop will keep repeating until the condition at the start
+            // is false So we need to initialize any variables the loop needs
+            // before it, and to change those variables inside the loop itself
             // Let's do it backwards, just for fun
 
             int i = 2;
-            while (FILL_ME_IN)
+            while (i >= 0)
             {
                 sum += numbers[i];
                 i--;
@@ -109,11 +112,13 @@ namespace DotNetCoreKoans.Koans
         [Step(5)]
         public void ForeachLoop()
         {
-            // What if we had a way to iterate over any sort of collection that does not require us
-            // to have to deal with an index and risk making a mistake that makes our program crash?
+            // What if we had a way to iterate over any sort of collection that
+            // does not require us to have to deal with an index and risk making
+            // a mistake that makes our program crash?
 
-            // A foreach loop will iterate through a collection all by itself, assigning the current iteration's value to a variable
-            // No more dealing with index variables
+            // A foreach loop will iterate through a collection all by itself,
+            // assigning the current iteration's value to a variable No more
+            // dealing with index variables
 
             var sharkSpecies = new List<string> {
                 "Great white shark",
@@ -124,7 +129,7 @@ namespace DotNetCoreKoans.Koans
 
             string lastShark = "";
 
-            foreach (var shark in FILL_ME_IN)
+            foreach (var shark in sharkSpecies)
             {
                 lastShark = shark;
             }
