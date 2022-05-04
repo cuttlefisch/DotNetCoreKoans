@@ -22,7 +22,6 @@ namespace DotNetCoreKoans.Koans
             var message = GetHeroHelloMessageWithIf(hero);
             Assert.Equal(FILL_ME_IN, message);
 
-
             var message2 = GetHeroHelloMessageWithCase(hero);
             Assert.Equal(FILL_ME_IN, message2);
         }
@@ -113,7 +112,6 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(FILL_ME_IN, string.Join(",", gadgets));
         }
 
-
         #endregion
 
         #region 2: Special case
@@ -142,7 +140,7 @@ namespace DotNetCoreKoans.Koans
         [Step(5)]
         public void SpecialCaseWithDestructuringTuple()
         {
-            /// 
+            ///
             var hero = ("Batman", "Valley", "Jean-Paul");
 
             var message = hero switch
@@ -184,14 +182,14 @@ namespace DotNetCoreKoans.Koans
 
             var message = hero switch
             {
-                Batman batman when batman.lastName != "Wayne" => "You look like Batman, but I don't think you are",
+                Batman batman when batman.lastName != "Wayne"
+                  => "You look like Batman, but I don't think you are",
                 { lastName: "Wayne" } => "Sure, you are Batman",
                 _ => "I don't know you" // default case
             };
 
             Assert.Equal(FILL_ME_IN, message);
         }
-
 
         // Pattern matching with null values
         [Step(8)]
@@ -202,7 +200,8 @@ namespace DotNetCoreKoans.Koans
 
             var message = hero switch
             {
-                Batman batman when batman.lastName != "Wayne" => "You look like Batman, but I don't think you are",
+                Batman batman when batman.lastName != "Wayne"
+                  => "You look like Batman, but I don't think you are",
                 Batman batman => "Sure, you are Batman",
                 _ => "I don't know you" // default case
             };
@@ -232,24 +231,24 @@ namespace DotNetCoreKoans.Koans
             this.firstName = firstName;
             this.lastName = lastName;
         }
-
     }
 
     class Batman : Hero
     {
         public string[] gadget = new string[]
         {
-            "Batarang", "Batgyro", "Batsuit", "Batmobile", "Belt"
+            "Batarang",
+            "Batgyro",
+            "Batsuit",
+            "Batmobile",
+            "Belt"
         };
 
-        public Batman() : base("Bruce", "Wayne")
-        { }
+        public Batman() : base("Bruce", "Wayne") { }
     }
 
     class Superman : Hero
     {
-        public Superman() : base("Clark Joseph", "Kent")
-        { }
+        public Superman() : base("Clark Joseph", "Kent") { }
     }
-
 }

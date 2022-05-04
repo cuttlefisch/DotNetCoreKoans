@@ -132,7 +132,7 @@ namespace DotNetCoreKoans.Koans
         public void AdditionWithoutPlusOrMinusOperator()
         {
             //Solve this problem without using + or -
-            //This is a complicated problem. If you don't 
+            //This is a complicated problem. If you don't
             //know how to solve it, try to Google it.
             int a = 15;
             int b = 4;

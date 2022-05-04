@@ -38,7 +38,6 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(FILL_ME_IN, lastName);
         }
 
-
         #endregion
 
         #region 2: Destructuring with object
@@ -55,7 +54,6 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(FILL_ME_IN, lastName);
         }
 
-
         // you can avoid destructuring a property
         [Step(4)]
         public void ObjectAvoidDestructuringAProperty()
@@ -67,7 +65,6 @@ namespace DotNetCoreKoans.Koans
 
             Assert.Equal(FILL_ME_IN, lastName);
         }
-
 
         // You can "configure" object destructuring
         [Step(5)]
@@ -94,7 +91,6 @@ namespace DotNetCoreKoans.Koans
                 this.lastName = lastName;
             }
 
-
             public void Deconstruct(out string fistName, out string lastName)
             {
                 fistName = this.firstName;
@@ -106,7 +102,6 @@ namespace DotNetCoreKoans.Koans
                 Deconstruct(out firstName, out lastName);
                 heroName = "Batman";
             }
-
         }
         #endregion
 

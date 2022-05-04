@@ -5,7 +5,6 @@ namespace DotNetCoreKoans.Engine.Tests.Fakes
 {
     internal class TestKoan : Koan
     {
-
         public bool WasSetup { get; set; }
         public bool WasToreDown { get; set; }
 
@@ -20,10 +19,7 @@ namespace DotNetCoreKoans.Engine.Tests.Fakes
         }
 
         [Step(1)]
-        public void PassingStep()
-        {
-
-        }
+        public void PassingStep() { }
 
         [Step(2)]
         public void FailingAssertionStep()

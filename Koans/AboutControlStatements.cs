@@ -33,7 +33,6 @@ namespace DotNetCoreKoans.Koans
                 b = false;
 
             Assert.Equal(true, b);
-
         }
 
         [Step(3)]
@@ -113,18 +112,23 @@ namespace DotNetCoreKoans.Koans
             var myType = this;
 
             if (myType is Koan)
-                { isKoan = true; }
+            {
+                isKoan = true;
+            }
 
             if (myType is AboutControlStatements)
-                { isAboutControlStatements = true; }
+            {
+                isAboutControlStatements = true;
+            }
 
             if (myType is AboutMethods)
-                { isAboutMethods = true; }
+            {
+                isAboutMethods = true;
+            }
 
             Assert.Equal(true, isKoan);
             Assert.Equal(true, isAboutControlStatements);
             Assert.Equal(false, isAboutMethods);
-
         }
 
         [Step(10)]
@@ -147,7 +151,10 @@ namespace DotNetCoreKoans.Koans
             int result = 1;
             while (true)
             {
-                if (i > 3) { break; }
+                if (i > 3)
+                {
+                    break;
+                }
                 result = result + i;
                 i += 1;
             }
@@ -162,10 +169,13 @@ namespace DotNetCoreKoans.Koans
             while (i < 10)
             {
                 i += 1;
-                if ((i % 2) == 0) { continue; }
+                if ((i % 2) == 0)
+                {
+                    continue;
+                }
                 result.Add(i);
             }
-            Assert.Equal(new List<int> {1, 3, 5, 7, 9}, result);
+            Assert.Equal(new List<int> { 1, 3, 5, 7, 9 }, result);
         }
 
         [Step(13)]
@@ -234,7 +244,10 @@ namespace DotNetCoreKoans.Koans
                 whoCaughtTheException = "When we tried to move to the next item in the list";
             }
 
-            Assert.Equal( "When we tried to move to the next item in the list", whoCaughtTheException);
+            Assert.Equal(
+                "When we tried to move to the next item in the list",
+                whoCaughtTheException
+            );
         }
     }
 }

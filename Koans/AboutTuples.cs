@@ -9,7 +9,6 @@ namespace DotNetCoreKoans.Koans
 {
     public class AboutTuples : Koan
     {
-
         #region 1: Tuple can group multiple elements together
 
 
@@ -67,10 +66,7 @@ namespace DotNetCoreKoans.Koans
 
             Assert.Equal(typeof(FillMeIn), batman1966.firstName.GetType());
             Assert.Equal(typeof(FillMeIn), batman1966.enemy.GetType());
-
         }
-
-
 
         #endregion
 
@@ -98,15 +94,16 @@ namespace DotNetCoreKoans.Koans
         public void ButListStillUsedReferenceEquality()
         {
             var enemy1966 = new List<string>() { "Joker", "Penguin", "Riddler", "Catwoman" };
-            var batman1966 = (firstName: "Bruce", lastName: "Wayne"
-                , enemy: enemy1966);
+            var batman1966 = (firstName: "Bruce", lastName: "Wayne", enemy: enemy1966);
 
-            var aDud = (firstName: "Bruce", lastName: "Wayne"
-                , enemy: enemy1966);
+            var aDud = (firstName: "Bruce", lastName: "Wayne", enemy: enemy1966);
             Assert.Equal(FILL_ME_IN, batman1966 == aDud);
 
-            var newBatman1966 = (firstName: "Bruce", lastName: "Wayne"
-                , enemy: new List<string>() { "Joker", "Penguin", "Riddler", "Catwoman" });
+            var newBatman1966 = (
+                firstName: "Bruce",
+                lastName: "Wayne",
+                enemy: new List<string>() { "Joker", "Penguin", "Riddler", "Catwoman" }
+            );
             Assert.Equal(FILL_ME_IN, batman1966 == newBatman1966); //this one is tricky
         }
 
@@ -121,7 +118,10 @@ namespace DotNetCoreKoans.Koans
             /// When your function need to return more than one value, you have to use out parameter
             /// Now, we can use tuples
             var otherEnemies = new List<string>();
-            var mainEnemy = extractMainEnemyWithOut("Joker,Penguin,Riddler,Catwoman", out otherEnemies);
+            var mainEnemy = extractMainEnemyWithOut(
+                "Joker,Penguin,Riddler,Catwoman",
+                out otherEnemies
+            );
 
             Assert.Equal(FILL_ME_IN, mainEnemy);
             Assert.Equal(FILL_ME_IN, string.Join(",", otherEnemies));
@@ -142,7 +142,9 @@ namespace DotNetCoreKoans.Koans
             return mainEnemy;
         }
 
-        private (string mainEnemy, List<string> othersEnemies) extractMainEnemyWithTuple(string enemies)
+        private (string mainEnemy, List<string> othersEnemies) extractMainEnemyWithTuple(
+            string enemies
+        )
         {
             var listEnemies = enemies.Split(",");
             var mainEnemy = listEnemies.First();
@@ -150,11 +152,10 @@ namespace DotNetCoreKoans.Koans
             return (mainEnemy, othersEnemies);
         }
 
-        // Tuple with extension can replace class 
+        // Tuple with extension can replace class
         [Step(9)]
         public void TupleWithExtensionCanReplaceClass()
         {
-
             var batman1966Class = new Movie("Bruce", "Wayne");
             batman1966Class.AddMainEnemy("Joker");
             batman1966Class.AddAlso("Penguin");
@@ -173,7 +174,7 @@ namespace DotNetCoreKoans.Koans
                 .GetTitle();
 
             Assert.Equal(FILL_ME_IN, titleTuple);
-            /* 
+            /*
              What's syntax do you prefer?
             If you want to know more on tuple + extension advantages, look at : https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch03.md
             */
@@ -224,24 +225,29 @@ namespace DotNetCoreKoans.Koans
         }
     }
 
-
     public static class MovieExtension
     {
-        public static string GetTitle(this (string firstName, string lastName, List<string> enemies) movie)
+        public static string GetTitle(
+            this (string firstName, string lastName, List<string> enemies) movie
+        )
         {
-            string strEnemies = movie.enemies.Any()
-                ? string.Join(", ", movie.enemies)
-                : "himself"; // If you don't understand, please look in AboutControlStatements.cs > TernaryOperators
+            string strEnemies = movie.enemies.Any() ? string.Join(", ", movie.enemies) : "himself"; // If you don't understand, please look in AboutControlStatements.cs > TernaryOperators
 
             return $"A move with {movie.firstName} {movie.lastName} against {strEnemies}";
         }
 
-        public static (string firstName, string lastName, List<string> enemies) WithMainEnemy(this (string firstName, string lastName) movie, string enemyName)
+        public static (string firstName, string lastName, List<string> enemies) WithMainEnemy(
+            this (string firstName, string lastName) movie,
+            string enemyName
+        )
         {
             return (movie.firstName, movie.lastName, new List<string>() { enemyName });
         }
 
-        public static (string firstName, string lastName, List<string> enemies) AndAlso(this (string firstName, string lastName, List<string> enemies) movie, string enemyName)
+        public static (string firstName, string lastName, List<string> enemies) AndAlso(
+            this (string firstName, string lastName, List<string> enemies) movie,
+            string enemyName
+        )
         {
             var enemies = movie.enemies.Append(enemyName).ToList();
             return (movie.firstName, movie.lastName, enemies);

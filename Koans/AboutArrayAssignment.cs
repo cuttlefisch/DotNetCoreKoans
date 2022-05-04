@@ -42,9 +42,10 @@ namespace DotNetCoreKoans.Koans
         [Step(3)]
         public void MultipleAssignmentsOnSingleLine()
         {
-            //You can do multiple assignments on one line, but you 
+            //You can do multiple assignments on one line, but you
             //still have to be explicit
-            string firstName = "John", lastName = "Smith";
+            string firstName = "John",
+                lastName = "Smith";
             Assert.Equal("John", firstName);
             Assert.Equal("Smith", lastName);
         }

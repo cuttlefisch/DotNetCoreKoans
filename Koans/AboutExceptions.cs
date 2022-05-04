@@ -61,7 +61,6 @@ namespace DotNetCoreKoans.Koans
             }
 
             Assert.Equal("Ohm", status);
-
         }
 
         [Step(4)]
@@ -126,7 +125,8 @@ namespace DotNetCoreKoans.Koans
                 {
                     throw new ConfidenceException(
                         @"Have faith in yourself, you can find out more about exceptions at
-                         https://docs.microsoft.com/en-us/dotnet/standard/exceptions/?redirectedfrom=MSDN");
+                         https://docs.microsoft.com/en-us/dotnet/standard/exceptions/?redirectedfrom=MSDN"
+                    );
                 }
             }
             catch (ConfidenceException)
@@ -137,18 +137,16 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(false, IKnowNothingAboutExceptions);
         }
 
-        // This is how we defined our own custom exception. 
-        // It is just a class that inherits from the System.Exception class. 
+        // This is how we defined our own custom exception.
+        // It is just a class that inherits from the System.Exception class.
         public class ConfidenceException : SystemException
         {
-
             public ConfidenceException() { }
 
             public ConfidenceException(string message) : base(message) { }
         }
 
         // This is just a helper function, don't worry about it
-        public void SaveKarmaToDisk() =>
-            throw new System.IO.IOException();
+        public void SaveKarmaToDisk() => throw new System.IO.IOException();
     }
 }

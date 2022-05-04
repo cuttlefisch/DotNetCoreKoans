@@ -14,10 +14,7 @@ namespace DotNetCoreKoans.Koans
         // instance of a class. Classes are declared by using the
         // class keyword followed by a unique identifier.
 
-        class Foo1
-        {
-
-        }
+        class Foo1 { }
 
         [Step(1)]
         public void InstancesOfAClassesCanBeCreatedWithNew()
@@ -51,7 +48,11 @@ namespace DotNetCoreKoans.Koans
         class Foo3
         {
             private bool _boom = true;
-            public bool Internal { get => _boom; set { _boom = value; } }
+            public bool Internal
+            {
+                get => _boom;
+                set { _boom = value; }
+            }
 
             public void Do()
             {
@@ -74,6 +75,7 @@ namespace DotNetCoreKoans.Koans
         class Foo4
         {
             public string Bar { get; }
+
             public Foo4(string @value = default(string)) => Bar = @value;
         }
 
@@ -95,9 +97,10 @@ namespace DotNetCoreKoans.Koans
         class Foo5
         {
             public int Val { get; }
+
             public Foo5(int val = 0) => Val = val;
-            public Foo5 Self() =>
-                throw new InvalidOperationException(nameof(Self));
+
+            public Foo5 Self() => throw new InvalidOperationException(nameof(Self));
 
             public override string ToString()
             {
@@ -144,6 +147,5 @@ namespace DotNetCoreKoans.Koans
             // references are still different
             Assert.False(Object.ReferenceEquals(foo1, foo2));
         }
-
     }
 }

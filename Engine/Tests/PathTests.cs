@@ -6,18 +6,19 @@ namespace DotNetCoreKoans.Engine.Tests
 {
     public class PathTests : TestBase
     {
-
         [Fact]
         public void ForEachKoanShouldCallTheActionForEachType()
         {
             var count = 0;
             var path = GetTestPath();
 
-            path.ForEachKoan(t =>
-            {
-                count++;
-                Assert.Equal(GetTestTypeInfo(), t);
-            });
+            path.ForEachKoan(
+                t =>
+                {
+                    count++;
+                    Assert.Equal(GetTestTypeInfo(), t);
+                }
+            );
 
             Assert.Equal(path.Count(), count);
         }
@@ -28,11 +29,12 @@ namespace DotNetCoreKoans.Engine.Tests
             var count = 0;
             var path = GetTestPath();
 
-            path.ForEachStep(s =>
-            {
-                count++;
-
-            });
+            path.ForEachStep(
+                s =>
+                {
+                    count++;
+                }
+            );
 
             Assert.Equal(GetTestMethodInfos().Count(), count);
         }
@@ -43,12 +45,13 @@ namespace DotNetCoreKoans.Engine.Tests
             var steps = new HashSet<Step>();
             var path = GetTestPath();
 
-            path.ForEachStep(step =>
-            {
-                Assert.DoesNotContain(step, steps);
-                steps.Add(step);
-
-            });
+            path.ForEachStep(
+                step =>
+                {
+                    Assert.DoesNotContain(step, steps);
+                    steps.Add(step);
+                }
+            );
 
             Assert.Equal(GetTestMethodInfos().Count(), steps.Count());
         }

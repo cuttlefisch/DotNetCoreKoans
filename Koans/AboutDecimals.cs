@@ -42,11 +42,11 @@ namespace DotNetCoreKoans.Koans
             double db = 7.4d;
 
             var result = 0m;
-            result = d + (decimal) f;
+            result = d + (decimal)f;
 
             Assert.Equal(9.3m, result);
 
-            result = d + (decimal) db;
+            result = d + (decimal)db;
 
             Assert.Equal(12.5m, result);
         }
@@ -55,15 +55,27 @@ namespace DotNetCoreKoans.Koans
         public void DecimalsHaveMaximumAndMinimumValues()
         {
             // Even the zen of the decimal has its limits...
-            Assert.Throws(typeof(System.OverflowException), () =>
-            {
-                var d = decimal.Parse("79,228,162,514,264,337,593,543,950,336",CultureInfo.InvariantCulture);
-            });
+            Assert.Throws(
+                typeof(System.OverflowException),
+                () =>
+                {
+                    var d = decimal.Parse(
+                        "79,228,162,514,264,337,593,543,950,336",
+                        CultureInfo.InvariantCulture
+                    );
+                }
+            );
 
-            Assert.Throws(typeof(System.OverflowException), () =>
-            {
-                var d = decimal.Parse("-79,228,162,514,264,337,593,543,950,336",CultureInfo.InvariantCulture);
-            });
+            Assert.Throws(
+                typeof(System.OverflowException),
+                () =>
+                {
+                    var d = decimal.Parse(
+                        "-79,228,162,514,264,337,593,543,950,336",
+                        CultureInfo.InvariantCulture
+                    );
+                }
+            );
         }
 
         [Step(5)]
@@ -88,7 +100,7 @@ namespace DotNetCoreKoans.Koans
             Assert.True(result == 0.7m);
 
             //The zen of the decimal is quite exceptional indeed. Unlike
-            //floats, they are able to handle math the way humans expect. 
+            //floats, they are able to handle math the way humans expect.
         }
     }
 }

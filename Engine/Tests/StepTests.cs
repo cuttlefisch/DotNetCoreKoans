@@ -19,7 +19,6 @@ namespace DotNetCoreKoans.Engine.Tests
             Assert.Same(koan, step.Instance);
             Assert.False(step.Instance?.Cast<TestKoan>().WasSetup);
             Assert.False(step.Instance?.Cast<TestKoan>().WasToreDown);
-
         }
 
         [Fact]
@@ -29,7 +28,10 @@ namespace DotNetCoreKoans.Engine.Tests
 
             Assert.Contains(GetTestTypeInfo().Name, step.Name);
             Assert.Contains(GetTestMethodInfos().First().Name, step.Name);
-            Assert.True(step.Name.IndexOf(GetTestTypeInfo().Name) < step.Name.IndexOf(GetTestMethodInfos().First().Name));
+            Assert.True(
+                step.Name.IndexOf(GetTestTypeInfo().Name)
+                    < step.Name.IndexOf(GetTestMethodInfos().First().Name)
+            );
         }
 
         [Fact]
@@ -42,7 +44,10 @@ namespace DotNetCoreKoans.Engine.Tests
             Assert.IsType<SuccessStepResult>(result);
             Assert.Same(step, result.Step);
             Assert.True(step.Instance.Cast<TestKoan>().WasSetup, "Koan was unexpectantly setup");
-            Assert.True(step.Instance.Cast<TestKoan>().WasToreDown, "Koan was unexpectantly tore down");
+            Assert.True(
+                step.Instance.Cast<TestKoan>().WasToreDown,
+                "Koan was unexpectantly tore down"
+            );
         }
 
         [Fact]
@@ -53,10 +58,15 @@ namespace DotNetCoreKoans.Engine.Tests
             var result = step.Meditate();
 
             Assert.IsType<AssertionFailedStepResult>(result);
-            Assert.IsAssignableFrom<XunitException>(result.Cast<AssertionFailedStepResult>().Exception);
+            Assert.IsAssignableFrom<XunitException>(
+                result.Cast<AssertionFailedStepResult>().Exception
+            );
             Assert.Same(step, result.Step);
             Assert.True(step.Instance.Cast<TestKoan>().WasSetup, "Koan was not properly setup");
-            Assert.True(step.Instance.Cast<TestKoan>().WasToreDown, "Koan was not properly tore down");
+            Assert.True(
+                step.Instance.Cast<TestKoan>().WasToreDown,
+                "Koan was not properly tore down"
+            );
         }
 
         [Fact]
@@ -67,10 +77,15 @@ namespace DotNetCoreKoans.Engine.Tests
             var result = step.Meditate();
 
             Assert.IsType<FailedStepResult>(result);
-            Assert.IsAssignableFrom<NotImplementedException>(result.Cast<FailedStepResult>().Exception);
+            Assert.IsAssignableFrom<NotImplementedException>(
+                result.Cast<FailedStepResult>().Exception
+            );
             Assert.Same(step, result.Step);
             Assert.True(step.Instance.Cast<TestKoan>().WasSetup, "Koan was not properly setup");
-            Assert.True(step.Instance.Cast<TestKoan>().WasToreDown, "Koan was not properly tore down");
+            Assert.True(
+                step.Instance.Cast<TestKoan>().WasToreDown,
+                "Koan was not properly tore down"
+            );
         }
     }
 }

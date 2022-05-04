@@ -72,7 +72,7 @@ namespace DotNetCoreKoans.Koans
             /*
             Because the underlying type of enum members are actually integers,
             you can create instances of an enum by casting an integer value to
-            an enum. 
+            an enum.
 
             Note that the associated constant value of members start with zero
             and increase by one.
@@ -117,7 +117,12 @@ namespace DotNetCoreKoans.Koans
             We're missing Friday!
             */
 
-            var workWeek = DayOfTheWeek.Monday | DayOfTheWeek.Tuesday | DayOfTheWeek.Wednesday | DayOfTheWeek.Thursday | DayOfTheWeek.Friday;
+            var workWeek =
+                DayOfTheWeek.Monday
+                | DayOfTheWeek.Tuesday
+                | DayOfTheWeek.Wednesday
+                | DayOfTheWeek.Thursday
+                | DayOfTheWeek.Friday;
             Assert.True(workWeek.HasFlag(DayOfTheWeek.Friday)); // Assuming you work Fridays :)
         }
 

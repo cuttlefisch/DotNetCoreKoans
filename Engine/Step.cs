@@ -8,7 +8,6 @@ namespace DotNetCoreKoans.Engine
 {
     public class Step
     {
-
         public Step(TypeInfo typeInfo, MethodInfo methodInfo)
         {
             TypeInfo = typeInfo;
@@ -18,19 +17,24 @@ namespace DotNetCoreKoans.Engine
         public TypeInfo TypeInfo { get; }
         public MethodInfo MethodInfo { get; }
 
-        public string Name { get { return $"{TypeInfo.Name} {MethodInfo.Name}"; } }
+        public string Name
+        {
+            get { return $"{TypeInfo.Name} {MethodInfo.Name}"; }
+        }
+
         public StepResult Meditate()
         {
             var koan = GetKoan();
-            var results = new[] {
+            var results = new[]
+            {
                 Try(() => koan.Setup()),
                 Try(() => MethodInfo.Invoke(koan, Array.Empty<object>())),
                 Try(() => koan.TearDown())
             };
 
-            return results.Any(r => r is FailedStepResult) ?
-                results.First(r => r is FailedStepResult) :
-                results.FirstOrDefault();
+            return results.Any(r => r is FailedStepResult)
+              ? results.First(r => r is FailedStepResult)
+              : results.FirstOrDefault();
         }
 
         public StepResult Try(Action throwable)
@@ -43,7 +47,11 @@ namespace DotNetCoreKoans.Engine
             {
                 if (e.InnerException is XunitException)
                 {
-                    return new AssertionFailedStepResult { Step = this, Exception = e.InnerException };
+                    return new AssertionFailedStepResult
+                    {
+                        Step = this,
+                        Exception = e.InnerException
+                    };
                 }
                 return new FailedStepResult { Step = this, Exception = e.InnerException ?? e };
             }
@@ -78,7 +86,9 @@ namespace DotNetCoreKoans.Engine
             if (Exception is AssertActualExpectedException assertException)
             {
                 console.WriteLine("The truth you are looking for...".Bold().Green());
-                console.WriteLine($"{assertException.Actual} is not {assertException.Expected}".Bold().Green());
+                console.WriteLine(
+                    $"{assertException.Actual} is not {assertException.Expected}".Bold().Green()
+                );
                 console.WriteLine();
             }
 
@@ -100,13 +110,9 @@ namespace DotNetCoreKoans.Engine
         }
     }
 
-    public class FailedStepResult : StepResult
-    {
+    public class FailedStepResult : StepResult { }
 
-    }
-
-    public class AssertionFailedStepResult : FailedStepResult
-    { }
+    public class AssertionFailedStepResult : FailedStepResult { }
 
     //This attribute is because we can't guarantee the order
     //of the methods when we walk a class. So this allows us
@@ -117,6 +123,9 @@ namespace DotNetCoreKoans.Engine
     {
         public int Position { get; set; }
 
-        public StepAttribute(int position) { this.Position = position; }
+        public StepAttribute(int position)
+        {
+            this.Position = position;
+        }
     }
 }

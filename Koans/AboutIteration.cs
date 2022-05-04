@@ -16,12 +16,7 @@ namespace DotNetCoreKoans.Koans
         public void ForLoop()
         {
             // Let's make a list with some numbers
-            var numbers = new List<int>()
-            {
-                42,
-                68,
-                12
-            };
+            var numbers = new List<int>() { 42, 68, 12 };
 
             int sum = 0;
             // A for loop has three parts: something to run before the loop
@@ -35,7 +30,6 @@ namespace DotNetCoreKoans.Koans
 
             Assert.Equal(122, sum);
         }
-
 
         [Step(2)]
         public void ForBreak()
@@ -78,18 +72,12 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal("Red", new_colors[0]);
         }
 
-
         [Step(4)]
         public void WhileLoop()
         {
             // This loop is sort of like the for loop, but only requires the
             // middle part
-            var numbers = new List<int>()
-            {
-                42,
-                68,
-                12
-            };
+            var numbers = new List<int>() { 42, 68, 12 };
 
             int sum = 0;
 
@@ -108,7 +96,6 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(122, sum);
         }
 
-
         [Step(5)]
         public void ForeachLoop()
         {
@@ -120,7 +107,8 @@ namespace DotNetCoreKoans.Koans
             // assigning the current iteration's value to a variable No more
             // dealing with index variables
 
-            var sharkSpecies = new List<string> {
+            var sharkSpecies = new List<string>
+            {
                 "Great white shark",
                 "Tiger shark",
                 "Whale shark",

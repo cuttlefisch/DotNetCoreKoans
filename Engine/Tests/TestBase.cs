@@ -18,10 +18,16 @@ namespace DotNetCoreKoans.Engine.Tests
 
         internal MethodInfo[] GetTestMethodInfos()
         {
-            return GetTestTypeInfo().GetMethods()
-                    .Where(m => m.GetCustomAttributes(typeof(StepAttribute), false).Any())
-                .OrderBy(m => m.GetCustomAttributes(typeof(StepAttribute), false)
-                                .Cast<StepAttribute>().Single().Position)
+            return GetTestTypeInfo()
+                .GetMethods()
+                .Where(m => m.GetCustomAttributes(typeof(StepAttribute), false).Any())
+                .OrderBy(
+                    m =>
+                        m.GetCustomAttributes(typeof(StepAttribute), false)
+                            .Cast<StepAttribute>()
+                            .Single()
+                            .Position
+                )
                 .ToArray();
         }
     }

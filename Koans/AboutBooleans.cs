@@ -42,13 +42,7 @@ namespace DotNetCoreKoans.Koans
         [Step(5)]
         public void NoOtherTypeConvertsToBool()
         {
-            var otherTypes = new object[]
-            {
-                "not a bool",
-                1, 0,
-                null,
-                new object[0]
-            };
+            var otherTypes = new object[] { "not a bool", 1, 0, null, new object[0] };
 
             foreach (var otherType in otherTypes)
             {

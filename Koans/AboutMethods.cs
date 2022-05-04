@@ -53,11 +53,14 @@ namespace DotNetCoreKoans.Koans
         [Step(3)]
         public void ExtensionMethodsWithVariableParameters()
         {
-            Assert.Equal(new string[] { "Cory", "Will", "Corey" }, this.MethodWithVariableArguments("Cory", "Will", "Corey"));
+            Assert.Equal(
+                new string[] { "Cory", "Will", "Corey" },
+                this.MethodWithVariableArguments("Cory", "Will", "Corey")
+            );
         }
 
-        //Extension methods can extend any class by referencing 
-        //the name of the class they are extending. For example, 
+        //Extension methods can extend any class by referencing
+        //the name of the class they are extending. For example,
         //we can "extend" the string class like so:
 
         [Step(4)]
@@ -66,7 +69,7 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal("Hi, Cory", "Cory".SayHi());
         }
 
-        //Of course, any of the parameter things you can do with 
+        //Of course, any of the parameter things you can do with
         //extension methods you can also do with local methods
 
         private string[] LocalMethodWithVariableParameters(params string[] names)
@@ -77,7 +80,10 @@ namespace DotNetCoreKoans.Koans
         [Step(5)]
         public void LocalMethodsWithVariableParams()
         {
-            Assert.Equal(new string[] { "Cory", "Will", "Corey" }, this.LocalMethodWithVariableParameters("Cory", "Will", "Corey"));
+            Assert.Equal(
+                new string[] { "Cory", "Will", "Corey" },
+                this.LocalMethodWithVariableParameters("Cory", "Will", "Corey")
+            );
         }
 
         //Note how we called the method by saying "this.LocalMethodWithVariableParameters"
@@ -86,7 +92,10 @@ namespace DotNetCoreKoans.Koans
         [Step(6)]
         public void LocalMethodsWithoutExplicitReceiver()
         {
-            Assert.Equal(new string[] { "Cory", "Will", "Corey" }, LocalMethodWithVariableParameters("Cory", "Will", "Corey"));
+            Assert.Equal(
+                new string[] { "Cory", "Will", "Corey" },
+                LocalMethodWithVariableParameters("Cory", "Will", "Corey")
+            );
         }
 
         //But it is required for Extension Methods, since it needs
@@ -96,19 +105,37 @@ namespace DotNetCoreKoans.Koans
 
         class InnerSecret
         {
-            public static string Key() { return "Key"; }
-            public string Secret() { return "Secret"; }
-            protected string SuperSecret() { return "This is secret"; }
-            private string SooperSeekrit() { return "No one will find me!"; }
+            public static string Key()
+            {
+                return "Key";
+            }
+
+            public string Secret()
+            {
+                return "Secret";
+            }
+
+            protected string SuperSecret()
+            {
+                return "This is secret";
+            }
+
+            private string SooperSeekrit()
+            {
+                return "No one will find me!";
+            }
         }
 
         class StateSecret : InnerSecret
         {
-            public string InformationLeak() { return SuperSecret(); }
+            public string InformationLeak()
+            {
+                return SuperSecret();
+            }
         }
 
         //Static methods don't require an instance of the object
-        //in order to be called. 
+        //in order to be called.
         [Step(7)]
         public void CallingStaticMethodsWithoutAnInstance()
         {
@@ -150,11 +177,15 @@ namespace DotNetCoreKoans.Koans
         public void SubvertPrivateMethods()
         {
             InnerSecret secret = new InnerSecret();
-            string superSecretMessage = secret.GetType()
-                .GetMethod("SooperSeekrit",
-                           System.Reflection.BindingFlags.NonPublic
-                           | System.Reflection.BindingFlags.Instance)
-                .Invoke(secret, null) as string;
+            string superSecretMessage =
+                secret
+                    .GetType()
+                    .GetMethod(
+                        "SooperSeekrit",
+                        System.Reflection.BindingFlags.NonPublic
+                            | System.Reflection.BindingFlags.Instance
+                    )
+                    .Invoke(secret, null) as string;
             Assert.Equal("No one will find me!", superSecretMessage);
         }
 

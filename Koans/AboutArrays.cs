@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xunit;
 using DotNetCoreKoans.Engine;
 
-
 namespace DotNetCoreKoans.Koans
 {
     public class AboutArrays : Koan
@@ -38,7 +37,13 @@ namespace DotNetCoreKoans.Koans
             Assert.True(array.IsFixedSize);
 
             //...it means we can't do this: array[1] = 13;
-            Assert.Throws(typeof(System.IndexOutOfRangeException), delegate () { array[1] = 13; });
+            Assert.Throws(
+                typeof(System.IndexOutOfRangeException),
+                delegate()
+                {
+                    array[1] = 13;
+                }
+            );
 
             //This is because the array is fixed at length 1. You could write a function
             //which created a new array bigger than the last, copied the elements over, and
@@ -67,8 +72,8 @@ namespace DotNetCoreKoans.Koans
         {
             var array = new[] { "peanut", "butter", "and", "jelly" };
 
-            Assert.Equal(new string[] { "peanut", "butter"}, array.Take(2).ToArray());
-            Assert.Equal(new string[] { "butter", "and"}, array.Skip(1).Take(2).ToArray());
+            Assert.Equal(new string[] { "peanut", "butter" }, array.Take(2).ToArray());
+            Assert.Equal(new string[] { "butter", "and" }, array.Skip(1).Take(2).ToArray());
         }
 
         [Step(5)]
@@ -98,17 +103,16 @@ namespace DotNetCoreKoans.Koans
             var list = new LinkedList<string>(array);
 
             list.AddFirst("Say");
-            Assert.Equal(new string[] {"Say", "Hello", "World" }, list.ToArray());
+            Assert.Equal(new string[] { "Say", "Hello", "World" }, list.ToArray());
 
             list.RemoveLast();
-            Assert.Equal(new string[] {"Say", "Hello"}, list.ToArray());
+            Assert.Equal(new string[] { "Say", "Hello" }, list.ToArray());
 
             list.RemoveFirst();
-            Assert.Equal(new string[] {"Hello"}, list.ToArray());
+            Assert.Equal(new string[] { "Hello" }, list.ToArray());
 
             list.AddAfter(list.Find("Hello"), "World");
-            Assert.Equal(new string[] {"Hello", "World" }, list.ToArray());
+            Assert.Equal(new string[] { "Hello", "World" }, list.ToArray());
         }
-
     }
 }

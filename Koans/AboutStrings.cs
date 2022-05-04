@@ -37,7 +37,7 @@ namespace DotNetCoreKoans.Koans
         [Step(4)]
         public void AnotherWayToCreateAStringWhichContainsDoubleQuotes()
         {
-            //The @ symbol creates a 'verbatim string literal'. 
+            //The @ symbol creates a 'verbatim string literal'.
             //Here's one thing you can do with it:
             var str = @"Hello, ""World""";
             Assert.Equal(14, str.Length);
@@ -54,11 +54,12 @@ namespace DotNetCoreKoans.Koans
         [Step(6)]
         public void VerbatimStringsCanHandleMultipleLinesToo()
         {
-            //Tip: What you create for the literal string will have to 
+            //Tip: What you create for the literal string will have to
             //escape the newline characters. For Windows, that would be
             // \r\n. If you are on non-Windows, that would just be \n.
             //We'll show a different way next.
-            var verbatimString = @"I
+            var verbatimString =
+                @"I
 am a
 broken line";
 
@@ -83,8 +84,14 @@ broken line";
             //(\r\n for Windows, \n for Linux) you shouldn't just type in
             //the hardcoded escape sequence. A much better way
             //(We'll handle concatenation and better ways of that in a bit)
-            var literalString = "I" + System.Environment.NewLine + "am a" + System.Environment.NewLine + "broken line";
-            var verbatimString = @"I
+            var literalString =
+                "I"
+                + System.Environment.NewLine
+                + "am a"
+                + System.Environment.NewLine
+                + "broken line";
+            var verbatimString =
+                @"I
 am a
 broken line";
             Assert.Equal(literalString, verbatimString);
@@ -122,7 +129,7 @@ broken line";
         {
             //So here's the thing. Concatenating strings is cool
             //and all. But if you think you are modifying the original
-            //string, you'd be wrong. 
+            //string, you'd be wrong.
 
             var strA = "Hello, ";
             var originalString = strA;
@@ -202,16 +209,23 @@ broken line";
         [Step(20)]
         public void BuiltInDateFormatters()
         {
-            var str = string.Format("{0:t}", DateTime.Parse("12/16/2011 2:35:02 PM", CultureInfo.InvariantCulture));
+            var str = string.Format(
+                "{0:t}",
+                DateTime.Parse("12/16/2011 2:35:02 PM", CultureInfo.InvariantCulture)
+            );
             Assert.Equal("2:35 PM", str);
         }
 
         [Step(21)]
         public void CustomDateFormatters()
         {
-            var str = string.Format("{0:t m}", DateTime.Parse("12/16/2011 2:35:02 PM", CultureInfo.InvariantCulture));
+            var str = string.Format(
+                "{0:t m}",
+                DateTime.Parse("12/16/2011 2:35:02 PM", CultureInfo.InvariantCulture)
+            );
             Assert.Equal("P 35", str);
         }
+
         //These are just a few of the formatters available. Dig some and you may find what you need.
 
         [Step(22)]
@@ -294,7 +308,7 @@ broken line";
         {
             var str = "Sausage Egg Cheese";
             string[] words = str.Split();
-            Assert.Equal(new[] { "Sausage", "Egg","Cheese" }, words);
+            Assert.Equal(new[] { "Sausage", "Egg", "Cheese" }, words);
         }
 
         [Step(31)]

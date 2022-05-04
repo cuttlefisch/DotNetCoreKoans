@@ -63,7 +63,7 @@ namespace DotNetCoreKoans.Koans
         {
             // If you try to store a number larger than the maximum number a
             // float can store, it will become Infinity or -Infinity
-            var largerThanMaximumFloatValue = float.Parse("3.5E+38",CultureInfo.InvariantCulture);
+            var largerThanMaximumFloatValue = float.Parse("3.5E+38", CultureInfo.InvariantCulture);
             Assert.True(true);
         }
 

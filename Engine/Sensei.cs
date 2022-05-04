@@ -58,17 +58,15 @@ namespace DotNetCoreKoans.Engine
             Console.WriteLine("  You have not yet reached enlightenment.".Cyan());
         }
 
-        private void GuideThroughError()
-        {
-
-        }
+        private void GuideThroughError() { }
 
         private void AZenlikeStatement()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
 
             // Quotes from http://www.zen-buddhism.net/quotes/zen-quotes.html
-            List<string> statements = new List<string> {
+            List<string> statements = new List<string>
+            {
                 "You should study not only that you become a mother when your child is born, but also that you become a child.",
                 "The one who is good at shooting does not hit the center of the target.",
                 "When an ordinary man attains knowledge, he is a sage; when a sage attains understanding, he is an ordinary man.",
@@ -85,12 +83,13 @@ namespace DotNetCoreKoans.Engine
                 "It is a man's own mind, not his enemy or foe, that lures him to evil ways"
             };
 
-            Console.WriteLine(String.Format("  \"{0}\"", statements[rand.Next(statements.Count())]));
+            Console.WriteLine(
+                String.Format("  \"{0}\"", statements[rand.Next(statements.Count())])
+            );
         }
 
         private void ShowProgressOn(Path path)
         {
-
             int stepCount = 0;
             path.ForEachStep(s => stepCount++);
             int stepsNotCompleted = stepCount - Observations.Count(o => o.IsSuccess);
@@ -98,12 +97,15 @@ namespace DotNetCoreKoans.Engine
             var graph = GenerateGraph(stepCount - stepsNotCompleted, stepCount);
 
             Console.WriteLine(graph.Green());
-            Console.WriteLine($"  {stepsNotCompleted} of {stepCount} steps remain on the path.".Green());
+            Console.WriteLine(
+                $"  {stepsNotCompleted} of {stepCount} steps remain on the path.".Green()
+            );
         }
 
         private string GenerateGraph(int completed, int all, int scale = 60)
         {
-            int stepCompletedRatio = completed == 0 ? 1 : (int)Math.Round(((float)completed / (float)all) * scale);
+            int stepCompletedRatio =
+                completed == 0 ? 1 : (int)Math.Round(((float)completed / (float)all) * scale);
 
             var sb = new StringBuilder();
             sb.Append("  [");

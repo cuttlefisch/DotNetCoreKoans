@@ -29,10 +29,7 @@ namespace DotNetCoreKoans.Koans
             int[] numbers = { 5, 1, 9, 8, 6, 7 };
 
             // 2. Query creation.
-            var lowNums =
-                from n in numbers
-                where n < 5
-                select n;
+            var lowNums = from n in numbers where n < 5 select n;
 
             // 3. Query execution.
             Assert.Equal(FILL_ME_IN, lowNums.Count());
@@ -44,9 +41,9 @@ namespace DotNetCoreKoans.Koans
             string[] customers = { "John", "Bill", "Maria", "George", "Anna" };
 
             var orderedCustomers =
-                 from cust in customers
-                 orderby cust ascending //You can also use descending here for reverse order.
-                 select cust;
+                from cust in customers
+                orderby cust ascending //You can also use descending here for reverse order.
+                select cust;
 
             Assert.Equal(FILL_ME_IN, orderedCustomers.First());
             Assert.Equal(FILL_ME_IN, orderedCustomers.Last());
@@ -72,23 +69,22 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(FILL_ME_IN, iAfterE);
         }
 
-        
         [Step(5)]
         public void HowToUseWhereToFilterData()
         {
-            var numbers = new[] {1, 2, 3, 4};
+            var numbers = new[] { 1, 2, 3, 4 };
             var result = numbers.Where(x => x > 2).ToArray();
-			
+
             //What values should be in array?
             Assert.Equal(FILL_ME_IN, result);
         }
-		
+
         [Step(6)]
         public void HowToGetInfoIfValueIsGreaterThanUsingSelect()
         {
-            var numbers = new[] {1, 2, 3, 4};
+            var numbers = new[] { 1, 2, 3, 4 };
             var result = numbers.Select(x => x > 2).ToArray();
-			
+
             //What values should be in array?
             Assert.Equal(FILL_ME_IN, result);
         }
@@ -125,7 +121,6 @@ namespace DotNetCoreKoans.Koans
 
             Assert.Equal(FILL_ME_IN, max);
         }
-
 
         [Step(10)]
         public void GetAverageOfTheData()

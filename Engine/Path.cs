@@ -14,13 +14,14 @@ namespace DotNetCoreKoans.Engine
         {
             try
             {
-                ForEachStep(step =>
-                {
-                    sensei.Observe(step.Meditate());
-                });
+                ForEachStep(
+                    step =>
+                    {
+                        sensei.Observe(step.Meditate());
+                    }
+                );
             }
-            catch (SenseiException e)
-            { }
+            catch (SenseiException e) { }
 
             sensei.Instruct(this);
 
@@ -37,21 +38,27 @@ namespace DotNetCoreKoans.Engine
 
         public void ForEachStep(Action<Step> action)
         {
-            ForEachKoan(typeInfo =>
-            {
-                var methods = typeInfo.GetMethods()
-                .Where(m => m.GetCustomAttributes(typeof(StepAttribute), false).Any())
-                .OrderBy(m => m.GetCustomAttributes(typeof(StepAttribute), false)
-                                .Cast<StepAttribute>().Single().Position)
-                .ToArray();
-
-                foreach (var methodInfo in methods)
+            ForEachKoan(
+                typeInfo =>
                 {
-                    action(new Step(typeInfo, methodInfo));
+                    var methods = typeInfo
+                        .GetMethods()
+                        .Where(m => m.GetCustomAttributes(typeof(StepAttribute), false).Any())
+                        .OrderBy(
+                            m =>
+                                m.GetCustomAttributes(typeof(StepAttribute), false)
+                                    .Cast<StepAttribute>()
+                                    .Single()
+                                    .Position
+                        )
+                        .ToArray();
+
+                    foreach (var methodInfo in methods)
+                    {
+                        action(new Step(typeInfo, methodInfo));
+                    }
                 }
-            });
-
-
+            );
         }
 
         IEnumerator IEnumerable.GetEnumerator()

@@ -23,20 +23,16 @@ namespace DotNetCoreKoans.Koans
 
         public class Chihuahua : Dog
         {
-            // The only way to "construct" a Dog is to give it a name. Since a 
+            // The only way to "construct" a Dog is to give it a name. Since a
             // Chihuahua 'is a Dog' it must conform to a public/protected
-            // constructor. Since the only public/protected constructor for a 
+            // constructor. Since the only public/protected constructor for a
             // dog requires a name, a public/protected constructor must also
             // require a Name.
-            public Chihuahua(string name) : base(name)
-            {
-            }
+            public Chihuahua(string name) : base(name) { }
 
             //Unless it doesn't. You have to call the base constructor at some point
             //with a name, but you don't have to have your class conform to that spec:
-            public Chihuahua() : base("Ima Chihuahua")
-            {
-            }
+            public Chihuahua() : base("Ima Chihuahua") { }
 
             // For a Chihuahua to do something different than a regular "Dog"
             // when called to "Bark", the base class must be virtual and the
@@ -79,12 +75,12 @@ namespace DotNetCoreKoans.Koans
             var chico = new Chihuahua("Chico");
             Assert.Equal("Happy", chico.Wag());
 
-            //We can search the public methods of an object 
+            //We can search the public methods of an object
             //instance like this:
             Assert.NotNull(chico.GetType().GetMethod("Wag"));
 
-            //So we can show that the Wag method isn't on Dog. 
-            //Proving you can't wag the dog. 
+            //So we can show that the Wag method isn't on Dog.
+            //Proving you can't wag the dog.
             var dog = new Dog("Fluffy");
             Assert.Null(dog.GetType().GetMethod("Wag"));
         }
@@ -117,7 +113,6 @@ namespace DotNetCoreKoans.Koans
             {
                 return "WAG WAG WAG!!";
             }
-
         }
 
         [Step(6)]
@@ -145,6 +140,7 @@ namespace DotNetCoreKoans.Koans
         public class BullDog : Dog
         {
             public BullDog(string name) : base(name) { }
+
             public override string Bark()
             {
                 return base.Bark() + ", GROWL";
@@ -161,6 +157,7 @@ namespace DotNetCoreKoans.Koans
         public class GreatDane : Dog
         {
             public GreatDane(string name) : base(name) { }
+
             public string Growl()
             {
                 return base.Bark() + ", GROWL";
