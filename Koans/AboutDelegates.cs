@@ -9,10 +9,11 @@ namespace DotNetCoreKoans.Koans
 {
     public class AboutDelegates : Koan
     {
-        //A delegate is a user defined type just like a class.
-        //A delegate lets you reference methods with the same signature and return type.
-        //Once you have the reference to the method, pass them as parameters or call it via the delegate.
-        //In other languages this is known as functions as first class citizens.
+        //A delegate is a user defined type just like a class. A delegate lets
+        //you reference methods with the same signature and return type. Once
+        //you have the reference to the method, pass them as parameters or call
+        //it via the delegate. In other languages this is known as functions as
+        //first class citizens.
 
         //Here is a delegate declaration
         delegate int BinaryOp(int lhs, int rhs);
@@ -34,9 +35,10 @@ namespace DotNetCoreKoans.Koans
         [Step(1)]
         public void DelegatesAreReferenceTypes()
         {
-            //If you don't initialize a delegate it will be a null value, just as any other refrence type.
+            //If you don't initialize a delegate it will be a null value, just
+            //as any other refrence type.
             BinaryOp op;
-            Assert.Null(FILL_ME_IN);
+            // Assert.Null(op);
         }
 
         [Step(2)]
@@ -44,7 +46,7 @@ namespace DotNetCoreKoans.Koans
         {
             MyMath math = new MyMath();
             BinaryOp op = new BinaryOp(math.Add);
-            Assert.Equal(FILL_ME_IN, op.GetMethodInfo().Name);
+            Assert.Equal("Add", op.GetMethodInfo().Name);
         }
 
         [Step(3)]
@@ -52,14 +54,14 @@ namespace DotNetCoreKoans.Koans
         {
             MyMath math = new MyMath();
             BinaryOp op = math.Add;
-            Assert.Equal(FILL_ME_IN, op.GetMethodInfo().Name);
+            Assert.Equal("Add", op.GetMethodInfo().Name);
         }
 
         [Step(4)]
         public void DelegatesCanReferenceStaticMethods()
         {
             BinaryOp op = MyMath.Subtract;
-            Assert.Equal(FILL_ME_IN, op.GetMethodInfo().Name);
+            Assert.Equal("Subtract", op.GetMethodInfo().Name);
         }
 
         [Step(5)]
@@ -67,12 +69,12 @@ namespace DotNetCoreKoans.Koans
         {
             MyMath math = new MyMath();
             BinaryOp op = math.Add;
-            Assert.Equal(FILL_ME_IN, op(3, 3));
+            Assert.Equal(6, op(3, 3));
         }
 
         private void PassMeTheDelegate(BinaryOp passed)
         {
-            Assert.Equal(FILL_ME_IN, passed(3, 3));
+            Assert.Equal(6, passed(3, 3));
         }
 
         [Step(6)]
@@ -93,14 +95,15 @@ namespace DotNetCoreKoans.Koans
         [Step(8)]
         public void DelegatesAreImmutable()
         {
-            //Like strings it looks like you can change what a delegate references, but really they are immutable objects
+            //Like strings it looks like you can change what a delegate
+            //references, but really they are immutable objects
             MyMath m = new MyMath();
             BinaryOp a = m.Add;
             BinaryOp original = a;
             Assert.Same(a, original);
             a = MyMath.Subtract;
             //a is now a different instance
-            Assert.Same(a, original);
+            Assert.NotSame(a, original);
         }
 
         delegate int Curry(int val);
@@ -124,10 +127,10 @@ namespace DotNetCoreKoans.Koans
             FunctionalTricks f = new FunctionalTricks();
             Curry adding = f.Add5;
             //So far we've only seen one method attached to a delegate.
-            Assert.Equal(FILL_ME_IN, adding.GetInvocationList().Length);
+            Assert.Equal(1, adding.GetInvocationList().Length);
             //However, you can attach multiple methods to a delegate
             adding += f.Add10;
-            Assert.Equal(FILL_ME_IN, adding.GetInvocationList().Length);
+            Assert.Equal(2, adding.GetInvocationList().Length);
         }
 
         [Step(10)]
@@ -136,8 +139,9 @@ namespace DotNetCoreKoans.Koans
             FunctionalTricks f = new FunctionalTricks();
             Curry adding = f.Add5;
             adding += f.Add10;
-            //Delegates may have more than one method attached, but only the result of the last method is returned.
-            Assert.Equal(FILL_ME_IN, adding(5));
+            //Delegates may have more than one method attached, but only the
+            //result of the last method is returned.
+            Assert.Equal(15, adding(5));
         }
 
         [Step(11)]
@@ -148,6 +152,7 @@ namespace DotNetCoreKoans.Koans
             adding += f.Add10;
             Assert.Equal(2, adding.GetInvocationList().Length);
             //Remove Add5 from the invocation list
+            adding -= f.Add5;
             Assert.Equal(1, adding.GetInvocationList().Length);
             Assert.Equal("Add10", adding.GetMethodInfo().Name);
         }
@@ -171,13 +176,14 @@ namespace DotNetCoreKoans.Koans
         [Step(12)]
         public void BuiltInActionDelegateTakesInt()
         {
-            //With the release of generics in .Net 2.0 we got some delegates which will cover most of our needs.
-            //You will see them in the base class libraries, so knowing about them will be helpful.
-            //The first is Action<>. Action<> can take a variety of parameters and has a void return type.
-            //  public delgate void Action<T>(T obj);
+            //With the release of generics in .Net 2.0 we got some delegates
+            //which will cover most of our needs. You will see them in the base
+            //class libraries, so knowing about them will be helpful. The first
+            //is Action<>. Action<> can take a variety of parameters and has a
+            //void return type. public delgate void Action<T>(T obj);
 
             Action<int> i = AssertIntEqualsFourtyTwo;
-            i((int)FILL_ME_IN);
+            i((int)42);
         }
 
         [Step(13)]
@@ -185,7 +191,7 @@ namespace DotNetCoreKoans.Koans
         {
             // Because the delegate is a template, it also works with any other type.
             Action<string> s = AssertStringEqualsFourtyTwo;
-            s((string)FILL_ME_IN);
+            s((string)"42");
         }
 
         [Step(14)]
@@ -193,7 +199,7 @@ namespace DotNetCoreKoans.Koans
         {
             //Action is an overloaded delegate so it can take more than one paramter
             Action<int, string> a = AssertAddEqualsFourtyTwo;
-            a(12, (string)FILL_ME_IN);
+            a(12, (string)"30");
         }
 
         public class Seen
@@ -213,13 +219,14 @@ namespace DotNetCoreKoans.Koans
         [Step(15)]
         public void ActionInTheBcl()
         {
-            //You will find Action used within the BCL, often when iterating over a container
+            //You will find Action used within the BCL, often when iterating
+            //over a container
             string greeting = "Hello world";
             Seen s = new Seen();
 
             Array.ForEach(greeting.ToCharArray(), s.Look);
 
-            Assert.Equal(FILL_ME_IN, s.Letters);
+            Assert.Equal("Hello world", s.Letters);
         }
 
         private bool IntEqualsFourtyTwo(int x)
@@ -235,12 +242,11 @@ namespace DotNetCoreKoans.Koans
         [Step(16)]
         public void BuiltInPredicateDelegateIntSatisfied()
         {
-            //The Predicate<T> delegate
-            //  public delgate bool Predicate<T>(T obj);
-            //Predicate allows you to codify a condition and pass it around.
-            //You use it to determine if an object satisfies some criteria.
+            //The Predicate<T> delegate public delgate bool Predicate<T>(T obj);
+            //  Predicate allows you to codify a condition and pass it around.
+            //  You use it to determine if an object satisfies some criteria.
 
-            Predicate<int> i = (Predicate<int>)FILL_ME_IN;
+            Predicate<int> i = (Predicate<int>)IntEqualsFourtyTwo;
             Assert.True(i(42));
         }
 
@@ -248,12 +254,12 @@ namespace DotNetCoreKoans.Koans
         public void BuiltInPredicateDelegateStringSatisfied()
         {
             //Because it is a template, you can work with any type
-            Predicate<string> s = (Predicate<string>)FILL_ME_IN;
+            Predicate<string> s = (Predicate<string>)StringEqualsFourtyTwo;
             Assert.True(s("42"));
 
-            //Predicate is not overloaded, so unlike Action<> you cannot do this...
-            //Predicate<int, string> a = (Predicate<int, string>)FILL_ME_IN;
-            //Assert.True(a(42, "42"));
+            //Predicate is not overloaded, so unlike Action<> you cannot do
+            //this... Predicate<int, string> a = (Predicate<int,
+            //string>)FILL_ME_IN; Assert.True(a(42, "42"));
         }
 
         private bool StartsWithS(string country)
@@ -267,7 +273,8 @@ namespace DotNetCoreKoans.Koans
             //Predicate can be used to find an element in an array
             var countries = new[] { "Greece", "Spain", "Uruguay", "Japan" };
 
-            Assert.Equal(FILL_ME_IN, Array.Find(countries, StartsWithS));
+            // Finds the first match then stops
+            Assert.Equal("Spain", Array.Find(countries, StartsWithS));
         }
 
         private bool IsInSouthAmerica(string country)
@@ -297,7 +304,7 @@ namespace DotNetCoreKoans.Koans
             //Predicate can also be used when verifying
             var countries = new[] { "Greece", "Spain", "Uruguay", "Japan" };
 
-            Assert.Equal(FILL_ME_IN, Array.TrueForAll(countries, IsInSouthAmerica));
+            Assert.Equal(false, Array.TrueForAll(countries, IsInSouthAmerica));
         }
 
         private string FirstMonth()
@@ -313,25 +320,27 @@ namespace DotNetCoreKoans.Koans
         [Step(20)]
         public void FuncWithNoParameters()
         {
-            //The Func<> delegate
-            //  public delegate TResult Func<T, TResult>(T arg);
-            //Is very similar to the Action<> delegate. However, Func<> does not require any parameters, while does require returns a value.
-            //The last type parameter specifies the return type. If you only specify a single
-            //type, Func<int>, then the method takes no paramters and returns an int.
-            //If you specify more than one parameter, then you are specifying the paramter types as well.
+            //The Func<> delegate `public delegate TResult Func<T, TResult>(T
+            //  arg);` Is very similar to the Action<> delegate. However, Func<>
+            //  does not require any parameters, while does require returns a
+            //  value. The last type parameter specifies the return type. If you
+            //  only specify a single type, Func<int>, then the method takes no
+            //  paramters and returns an int. If you specify more than one
+            //  parameter, then you are specifying the paramter types as well.
 
             Func<string> d = FirstMonth;
-            Assert.Equal(FILL_ME_IN, d());
+            Assert.Equal("January", d());
         }
 
         [Step(21)]
         public void FunctionReturnsInt()
         {
-            //Like Action<>, Func<> is overloaded and can take a variable number of parameters.
-            //The first type parameters define the parameter types and the last one is the return type. So the following matches
-            //a method which takes two int parameters and returns a int.
+            //Like Action<>, Func<> is overloaded and can take a variable number
+            //of parameters. The first type parameters define the parameter
+            //types and the last one is the return type. So the following
+            //matches a method which takes two int parameters and returns a int.
             Func<int, int, int> a = Add;
-            Assert.Equal(FILL_ME_IN, a(1, 1));
+            Assert.Equal(2, a(1, 1));
         }
 
         public class Car
@@ -356,9 +365,11 @@ namespace DotNetCoreKoans.Koans
         [Step(22)]
         public void SortingWithComparison()
         {
-            //You could make classes sortable by implementing IComparable or IComparer. But the Comparison<> delegate makes it easier
-            //	public delegate int Comparison<T>(T x, T y);
-            //All you need is a method which takes two of the same type and returns -1, 0, or 1 depending upon what order they should go in.
+            //You could make classes sortable by implementing IComparable or
+            //IComparer. But the Comparison<> delegate makes it easier ` public
+            //delegate int Comparison<T>(T x, T y);` All you need is a method
+            //which takes two of the same type and returns -1, 0, or 1 depending
+            //upon what order they should go in.
             var cars = new[]
             {
                 new Car("BMC", "Mini", 1959),
@@ -367,7 +378,7 @@ namespace DotNetCoreKoans.Koans
             Comparison<Car> by = SortByModel;
             Array.Sort(cars, by);
 
-            Assert.Equal(FILL_ME_IN, cars[0].Model);
+            Assert.Equal("GTV-6", cars[0].Model);
         }
 
         private string Stringify(int x)
@@ -386,7 +397,7 @@ namespace DotNetCoreKoans.Koans
 
             var result = Array.ConvertAll(numbers, c);
 
-            Assert.Equal(FILL_ME_IN, result);
+            Assert.Equal(new string[] { "1", "2", "3", "4" }, result);
         }
     }
 }
