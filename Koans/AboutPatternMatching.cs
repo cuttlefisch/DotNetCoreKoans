@@ -64,10 +64,10 @@ namespace DotNetCoreKoans.Koans
             Hero hero = new Batman();
 
             var gadgets = GetGadgetsWithIf(hero);
-            Assert.Equal(FILL_ME_IN, string.Join(",", gadgets));
+            Assert.Equal("Batarang,Batgyro,Batsuit,Batmobile,Belt", string.Join(",", gadgets));
 
             var gadgets2 = GetGadgetsWithCase(hero);
-            Assert.Equal(FILL_ME_IN, string.Join(",", gadgets2));
+            Assert.Equal("Batarang,Batgyro,Batsuit,Batmobile,Belt", string.Join(",", gadgets2));
         }
 
         private string[] GetGadgetsWithIf(Hero hero)
@@ -78,7 +78,7 @@ namespace DotNetCoreKoans.Koans
                 return batman.gadget; // gadget is not in hero class but in batman
             }
 
-            return new string[0];
+            return new string[0];  // Empty string array
         }
 
         private string[] GetGadgetsWithCase(Hero hero)
@@ -98,9 +98,9 @@ namespace DotNetCoreKoans.Koans
         [Step(3)]
         public void PatternMatchingCaseSugarSyntax()
         {
-            /// In the two previous examples, each switch case always returns a value.
-            /// There is a sugar syntax for that
-            /// Let's refactor the second one.
+            /// In the two previous examples, each switch case always returns a
+            /// value. There is a sugar syntax for that Let's refactor the
+            /// second one.
             Hero hero = new Batman();
 
             var gadgets = hero switch
@@ -109,7 +109,7 @@ namespace DotNetCoreKoans.Koans
                 _ => new string[0] // default case
             };
 
-            Assert.Equal(FILL_ME_IN, string.Join(",", gadgets));
+            Assert.Equal("Batarang,Batgyro,Batsuit,Batmobile,Belt", string.Join(",", gadgets));
         }
 
         #endregion
@@ -133,7 +133,7 @@ namespace DotNetCoreKoans.Koans
                 _ => "I don't know you" // default case
             };
 
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("You look like batman, but I don't think you are", message);
         }
 
         // Special case with destructuring on tuples
@@ -150,7 +150,7 @@ namespace DotNetCoreKoans.Koans
                 _ => "I don't know you" // default case
             };
 
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("You look like Batman, but I don't think you are", message);
         }
 
         // Special case with destructuring on object
@@ -166,7 +166,7 @@ namespace DotNetCoreKoans.Koans
                 _ => "I don't know you" // default case
             };
 
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("Sure, you are Batman", message);
         }
 
         #endregion
@@ -188,7 +188,7 @@ namespace DotNetCoreKoans.Koans
                 _ => "I don't know you" // default case
             };
 
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("Sure, you are Batman", message);
         }
 
         // Pattern matching with null values
@@ -206,7 +206,7 @@ namespace DotNetCoreKoans.Koans
                 _ => "I don't know you" // default case
             };
 
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("I don't know you", message);
         }
 
         #endregion

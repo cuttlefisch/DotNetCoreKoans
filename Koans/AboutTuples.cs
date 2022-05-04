@@ -18,8 +18,8 @@ namespace DotNetCoreKoans.Koans
         {
             var batman = new Tuple<string, string>("Bruce", "Wayne");
 
-            Assert.Equal(FILL_ME_IN, batman.Item1); // FirstName
-            Assert.Equal(FILL_ME_IN, batman.Item2); // LastName
+            Assert.Equal("Bruce", batman.Item1); // FirstName
+            Assert.Equal("Wayne", batman.Item2); // LastName
         }
 
         // with some syntax sugar
@@ -28,8 +28,8 @@ namespace DotNetCoreKoans.Koans
         {
             var batman = ("Bruce", "Wayne");
 
-            Assert.Equal(FILL_ME_IN, batman.Item1); // FirstName
-            Assert.Equal(FILL_ME_IN, batman.Item2); // LastName
+            Assert.Equal("Bruce", batman.Item1); // FirstName
+            Assert.Equal("Wayne", batman.Item2); // LastName
         }
 
         // You can name values in the tuple
@@ -39,8 +39,8 @@ namespace DotNetCoreKoans.Koans
             var lastName = "Wayne";
             var batman = (firstName: "Bruce", lastName);
 
-            Assert.Equal(FILL_ME_IN, batman.firstName);
-            Assert.Equal(FILL_ME_IN, batman.lastName);
+            Assert.Equal("Bruce", batman.firstName);
+            Assert.Equal("Wayne", batman.lastName);
         }
 
         // A tuple can be used as a function parameter
@@ -49,7 +49,7 @@ namespace DotNetCoreKoans.Koans
         {
             var batman = (firstName: "Bruce", lastName: "Wayne");
 
-            Assert.Equal(FILL_ME_IN, GetFullName(batman));
+            Assert.Equal("Bruce Wayne", GetFullName(batman));
         }
 
         public string GetFullName((string firstName, string lastName) data)
@@ -64,8 +64,8 @@ namespace DotNetCoreKoans.Koans
             var enemy = new List<string>() { "Joker", "Penguin", "Riddler", "Catwoman" };
             var batman1966 = (firstName: "Bruce", lastName: "Wayne", enemy);
 
-            Assert.Equal(typeof(FillMeIn), batman1966.firstName.GetType());
-            Assert.Equal(typeof(FillMeIn), batman1966.enemy.GetType());
+            Assert.Equal(typeof(string), batman1966.firstName.GetType());
+            Assert.Equal(typeof(List<string>), batman1966.enemy.GetType());
         }
 
         #endregion
@@ -80,13 +80,13 @@ namespace DotNetCoreKoans.Koans
             var batman = (firstName: "Bruce", lastName: "Wayne");
 
             var bruceWayne = ("Bruce", "Wayne");
-            Assert.Equal(FILL_ME_IN, batman == bruceWayne);
+            Assert.Equal(true, batman == bruceWayne);
 
             var wayneBruce = ("Wayne", "Bruce");
-            Assert.Equal(FILL_ME_IN, batman == wayneBruce);
+            Assert.Equal(false, batman == wayneBruce);
 
             var azrael = (firstName: "Jean-Paul", lastName: "Valley");
-            Assert.Equal(FILL_ME_IN, batman == azrael);
+            Assert.Equal(false, batman == azrael);
         }
 
         // Two lists in a tuple are compared by reference
@@ -97,14 +97,14 @@ namespace DotNetCoreKoans.Koans
             var batman1966 = (firstName: "Bruce", lastName: "Wayne", enemy: enemy1966);
 
             var aDud = (firstName: "Bruce", lastName: "Wayne", enemy: enemy1966);
-            Assert.Equal(FILL_ME_IN, batman1966 == aDud);
+            Assert.Equal(true, batman1966 == aDud);
 
             var newBatman1966 = (
                 firstName: "Bruce",
                 lastName: "Wayne",
                 enemy: new List<string>() { "Joker", "Penguin", "Riddler", "Catwoman" }
             );
-            Assert.Equal(FILL_ME_IN, batman1966 == newBatman1966); //this one is tricky
+            Assert.Equal(false, batman1966 == newBatman1966); //this one is tricky
         }
 
         #endregion
@@ -115,7 +115,8 @@ namespace DotNetCoreKoans.Koans
         [Step(8)]
         public void TupleReplaceOutParameter()
         {
-            /// When your function need to return more than one value, you have to use out parameter
+            /// When your function need to return more than one value, you have
+            /// to use out parameter
             /// Now, we can use tuples
             var otherEnemies = new List<string>();
             var mainEnemy = extractMainEnemyWithOut(
@@ -123,13 +124,13 @@ namespace DotNetCoreKoans.Koans
                 out otherEnemies
             );
 
-            Assert.Equal(FILL_ME_IN, mainEnemy);
-            Assert.Equal(FILL_ME_IN, string.Join(",", otherEnemies));
+            Assert.Equal("Joker", mainEnemy);
+            Assert.Equal("Penguin,Riddler,Catwoman", string.Join(",", otherEnemies));
 
             var extract = extractMainEnemyWithTuple("Joker,Penguin,Riddler,Catwoman");
 
-            Assert.Equal(FILL_ME_IN, extract.mainEnemy);
-            Assert.Equal(FILL_ME_IN, string.Join(",", extract.othersEnemies));
+            Assert.Equal("Joker", extract.mainEnemy);
+            Assert.Equal("Penguin,Riddler,Catwoman", string.Join(",", extract.othersEnemies));
 
             // What syntax do you prefer?
         }
@@ -163,7 +164,7 @@ namespace DotNetCoreKoans.Koans
             batman1966Class.AddAlso("Catwoman");
             string titleClass = batman1966Class.GetTitle();
 
-            Assert.Equal(FILL_ME_IN, titleClass);
+            Assert.Equal("A move with Bruce Wayne against Joker, Penguin, Riddler, Catwoman", titleClass);
 
             // You can know more on extension with koan AboutMethods
             string titleTuple = ("Bruce", "Wayne")
@@ -173,10 +174,11 @@ namespace DotNetCoreKoans.Koans
                 .AndAlso("Catwoman")
                 .GetTitle();
 
-            Assert.Equal(FILL_ME_IN, titleTuple);
+            Assert.Equal("A move with Bruce Wayne against Joker, Penguin, Riddler, Catwoman", titleTuple);
             /*
-             What's syntax do you prefer?
-            If you want to know more on tuple + extension advantages, look at : https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch03.md
+             What's syntax do you prefer? If you want to know more on tuple +
+            extension advantages, look at :
+            https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch03.md
             */
         }
 
