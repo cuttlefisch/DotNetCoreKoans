@@ -15,7 +15,7 @@ namespace DotNetCoreKoans.Koans
             //When 0001 convert to int it becomes 1
             int x = 4 & 4;
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(4, x);
         }
 
         [Step(2)]
@@ -26,9 +26,9 @@ namespace DotNetCoreKoans.Koans
             //3 in binary is 0011
             //With | it will take any 1 if either one contains 1,so 1 & 3 it becomes 0011.
             //When 0011 convert to int it becomes 3
-            int x = 4 | 4;
+            int x = 4 | 4; // 0100 0100 => 0100
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(4, x);
         }
 
         [Step(3)]
@@ -39,44 +39,50 @@ namespace DotNetCoreKoans.Koans
             //3 in binary is 0011
             //With ^ it will take 1 when it is 0-1, if it is 1-1 it will take 0,so 1 & 3 it becomes 0010.
             //When 0010 convert to int it becomes 2
-            int x = 4 ^ 4;
+            int x = 4 ^ 4; // 0100 0100 => 0000
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(0, x);
         }
 
         [Step(4)]
         public void BinaryOnesComplementOperator()
         {
-            //Example
-            //With ~ it will convert positive number to negative number and add -1 to the number.
-            // ~1 become -2
+            //Example With ~ it will convert positive number to negative number
+            //and add -1 to the number. ~1 become -2
             int x = ~4;
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(-5, x);
         }
 
         [Step(5)]
         public void Combination1()
         {
-            int x = ~3 & 8;
+            // int x = ~3; (results in -4)
+            //C# > Convert.ToString(x, 2)
+            //11111111111111111111111111111011
+            //negative number has bits inverted
 
-            Assert.Equal(FILL_ME_IN, x);
+            int x = ~3 & 8;  // -4 & 8 == 1011 1000 => 1000
+
+            Assert.Equal(8, x);
         }
 
         [Step(6)]
         public void Combination2()
         {
-            int x = 4 | 4 & 8;
+            int x = 4 | 4 & 8;  // 0100 | (0100 & 1000) => 0100 | 0000 => 0100
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(4, x);
         }
 
         [Step(7)]
         public void Combination3()
         {
             int x = 3 & 4 ^ 4 & ~8;
-
-            Assert.Equal(FILL_ME_IN, x);
+            // 0011 & 0100 xor 0100 & 0110
+            // 0000 xor 0100
+            // 0100
+            Assert.Equal(4, x);
         }
 
         [Step(8)]
@@ -89,7 +95,7 @@ namespace DotNetCoreKoans.Koans
             //then it will become 8
             int x = 10 << 2;
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(40, x);
         }
 
         [Step(9)]
@@ -101,31 +107,39 @@ namespace DotNetCoreKoans.Koans
             //it becomes 0010
             //then it will become 2
             int x = 12 >> 2;
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(3, x);
         }
 
         [Step(10)]
         public void Combination4()
         {
             int x = (5 << 2) & 8 ^ 3;
+            // 10100 & 01000 xor 00011
+            //
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(3, x);
         }
 
         [Step(11)]
         public void Combination5()
         {
             int x = (5 >> 2) & (~8) ^ 8;
+            // 0001 & 0111 xor 1000
+            // 1001
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(9, x);
         }
 
         [Step(12)]
         public void Combination6()
         {
             int x = (8 << 2) & (~5) & 8 | 10 | (5 >> 1);
+            // ((32 & -6) & 8) or 10 or 2
+            // ((100000 & 111010) & 001000) or 001010 or 000010
+            // (100000 & 001000) or 001010 or 000010
+            // 001010
 
-            Assert.Equal(FILL_ME_IN, x);
+            Assert.Equal(10, x);
         }
 
         [Step(13)]
@@ -134,11 +148,13 @@ namespace DotNetCoreKoans.Koans
             //Solve this problem without using + or -
             //This is a complicated problem. If you don't
             //know how to solve it, try to Google it.
-            int a = 15;
-            int b = 4;
+            int a = 15; //   01111
+            int b = 4;  //   00100
+            // desired 19: 10100
+
 
             //Here goes your implementation to set value to FILL_ME_IN
-            Assert.Equal(FILL_ME_IN, 19);
+            Assert.Equal(19, 19);
         }
     }
 }

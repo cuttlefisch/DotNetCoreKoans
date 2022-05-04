@@ -20,10 +20,10 @@ namespace DotNetCoreKoans.Koans
             Hero hero = new Superman();
 
             var message = GetHeroHelloMessageWithIf(hero);
-            Assert.Equal(FILL_ME_IN, message);
+            Assert.Equal("I'm Superman", message);
 
             var message2 = GetHeroHelloMessageWithCase(hero);
-            Assert.Equal(FILL_ME_IN, message2);
+            Assert.Equal("I'm Superman", message2);
         }
 
         private string GetHeroHelloMessageWithIf(Hero hero)
@@ -38,7 +38,7 @@ namespace DotNetCoreKoans.Koans
             }
             else
             {
-                return "Nobody knows me :'(";
+                return "Nobody knows me 😭";
             }
         }
 
